@@ -1,6 +1,6 @@
 "use client";
 
-import { CONFIG } from "@/libs/configs";
+import { CONFIG, GOOGLEFRONTCLOUND } from "@/libs/configs";
 import DrawerComponent from "./DrawerComponent";
 import ShareIcon from "./ui/icons/ShareIcon";
 import { useEffect, useState } from "react";
@@ -52,10 +52,9 @@ export default function ShareDrawer({ icon, clickedIcon }: Props) {
       kakao.Share.sendDefault({
         objectType: "feed",
         content: {
-          title: "테스트",
-          description: "테스트",
-          imageUrl:
-            "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+          title: CONFIG.metadata.title,
+          description: CONFIG.metadata.description,
+          imageUrl: `${GOOGLEFRONTCLOUND}/${CONFIG.metadata.image}`,
           link: {
             mobileWebUrl: "https://www.google.com",
             webUrl: "https://www.google.com",
