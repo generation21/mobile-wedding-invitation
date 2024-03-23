@@ -19,6 +19,7 @@ export const CONFIG = {
   metadata: {
     title: "승범 소연이의 모바일 청접장",
     description: "2024.06.01 오후 3시",
+    image: "post/instroduction/1.png",
   },
 
   inputFrom: {
