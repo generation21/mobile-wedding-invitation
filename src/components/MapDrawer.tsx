@@ -20,17 +20,13 @@ export default function MapDrawer({ children }: Props) {
     {
       title: "카카오맵",
       icon: <MapIcon src="map/kakaomap.svg" alt="kakao map" />,
-      url: "https://naver.me/xjeLdhwB",
+      url: "https://place.map.kakao.com/9846217",
     },
-    {
-      title: "카카오네비",
-      icon: <MapIcon src="map/kakaonavi.svg" alt="kakao navi" />,
-      url: "https://naver.me/xjeLdhwB",
-    },
+
     {
       title: "티맵",
       icon: <MapIcon src="map/Tmap.svg" alt="T map" />,
-      url: "https://naver.me/xjeLdhwB",
+      url: "https://tmap.life/bca15637",
     },
   ];
   return (
