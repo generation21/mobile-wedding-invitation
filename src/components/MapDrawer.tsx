@@ -6,7 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import MapIcon from "./ui/icons/MapIcon";
 import DrawerComponent from "./DrawerComponent";
-
+import ShareIcon from "./ui/icons/ShareIcon";
+import toast, { Toaster } from "react-hot-toast";
 type Props = {
   children: React.ReactNode;
 };
@@ -28,7 +29,34 @@ export default function MapDrawer({ children }: Props) {
       icon: <MapIcon src="map/Tmap.svg" alt="T map" />,
       url: "https://tmap.life/bca15637",
     },
+    {
+      title: "주소 복사",
+      icon: (
+        <ShareIcon
+          src={"link.svg"}
+          alt={"link"}
+          style="rounded-full w-14 h-14  wborder shadow-sm border-gray-200"
+        />
+      ),
+      url: CONFIG.address,
+    },
   ];
+  const notify = () =>
+    toast("복사되었습니다!", {
+      duration: 1000,
+      position: "bottom-center",
+      icon: "🫡",
+      style: {
+        borderRadius: "10px",
+        backgroundColor: "black",
+        color: "white",
+      },
+    });
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(CONFIG.address).then(() => {
+      notify();
+    });
+  };
   return (
     <DrawerComponent
       title={CONFIG.location.title}
@@ -37,14 +65,24 @@ export default function MapDrawer({ children }: Props) {
       clickedIcon={children}
     >
       <ul className="grid grid-rows-2 gap-2 m-2 sm:grid-rows-1 grid-flow-col">
-        {mapDictionary.map((map) => (
-          <Link href={map.url} target="_blank" key={map.title}>
-            <li className="flex items-center gap-3 flex-col px-4">
+        {mapDictionary.map((map) => {
+          return map.title === "주소 복사" ? (
+            <li
+              className="flex items-center gap-3 flex-col px-4"
+              onClick={handleCopyClick}
+            >
               {map.icon}
               <p className="text-xs sm:text-sm text-gray-700">{map.title}</p>
             </li>
-          </Link>
-        ))}
+          ) : (
+            <Link href={map.url} target="_blank" key={map.title}>
+              <li className="flex items-center gap-3 flex-col px-4">
+                {map.icon}
+                <p className="text-xs sm:text-sm text-gray-700">{map.title}</p>
+              </li>
+            </Link>
+          );
+        })}
       </ul>
     </DrawerComponent>
   );

@@ -5,7 +5,6 @@ import DrawerComponent from "./DrawerComponent";
 import ShareIcon from "./ui/icons/ShareIcon";
 import { useEffect, useState } from "react";
 
-import ToastCustom from "./ui/toastCustom";
 import toast, { Toaster } from "react-hot-toast";
 
 type Props = {
@@ -24,7 +23,7 @@ export default function ShareDrawer({ icon, clickedIcon }: Props) {
       icon: <ShareIcon src={"link.svg"} alt={"link"} />,
     },
   };
-  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://developers.kakao.com/sdk/js/kakao.js";
@@ -53,8 +52,8 @@ export default function ShareDrawer({ icon, clickedIcon }: Props) {
           description: CONFIG.metadata.description,
           imageUrl: `${GOOGLEFRONTCLOUND}/${CONFIG.metadata.image}`,
           link: {
-            mobileWebUrl: CONFIG.myurl,
-            webUrl: CONFIG.myurl,
+            mobileWebUrl: "https://sb-s2-sy--wedding-invitation.vercel.app",
+            webUrl: "https://sb-s2-sy--wedding-invitation.vercel.app",
           },
         },
       });

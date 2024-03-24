@@ -3,7 +3,8 @@ export const GOOGLEFRONTCLOUND =
   "https://storage.googleapis.com/wedding-invitation-a4e03.appspot.com";
 
 export const CONFIG = {
-  myurl: "https://sb-s2-sy--wedding-invitation.vercel.app/",
+  myurl: "https://sb-s2-sy--wedding-invitation.vercel.app",
+  address: "경기도 수원시 팔달구 우만동 팔달문로 128 수원 노블레스 웨딩 컨벤션",
   user: {
     name: "sb ♥ sy",
     image: "",
@@ -34,8 +35,36 @@ export const CONFIG = {
   account: {
     title: "신랑 신부에게 마음 전하기",
     description: "축하의 마음을 담아 축의금을 전달해보세요.",
-    account: "123456-78-910111",
-    name: "신랑",
+    groom: {
+      name: "홍승범",
+      account: "110395348961",
+      type: "shinhan",
+    },
+    groomFather: {
+      name: "홍인선",
+      account: "20716852087663",
+      type: "nhfn",
+    },
+    groomMother: {
+      name: "김순영",
+      account: "20716852086557",
+      type: "nhfn",
+    },
+    bride: {
+      name: "신소연",
+      account: "60150101255841",
+      type: "kb",
+    },
+    brideFather: {
+      name: "심문교",
+      account: "46891014319807",
+      type: "hana",
+    },
+    brideMother: {
+      name: "심정임",
+      account: "60150101229978",
+      type: "kb",
+    },
   },
 
   emojis: [
