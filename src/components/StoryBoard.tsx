@@ -19,7 +19,7 @@ export default function StoryBoard() {
     error,
   } = useSWR<StoryBoard[]>("api/storyboard");
 
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState<string | null>(null);
 
   return (
     <section className="w-full flex justify-center items-center p-4 shadow-sm shadow-neutral-300 mb-4 min-h-[90px] overflow-x-auto">
@@ -31,17 +31,21 @@ export default function StoryBoard() {
             <li
               key={item.title}
               className="flex flex-col items-center w-20"
-              onClick={() => setOpenModal(true)}
+              onClick={() => setOpenModal(item.title)}
             >
               <Avatar image={item.thumnail} highlight={true} />
               <p className="text-sm text-ellipsis overflow-hidden w-full text-center">
                 {item.title}
               </p>
 
-              {openModal && (
+              {openModal === item.title && (
                 <ModalPortal>
-                  <StoryBoardModal onClose={() => setOpenModal(false)}>
-                    <StoryBoardDetail title={item.title} images={item.images} />
+                  <StoryBoardModal onClose={() => setOpenModal(null)}>
+                    <StoryBoardDetail
+                      key={item.title}
+                      title={item.title}
+                      images={item.images}
+                    />
                   </StoryBoardModal>
                 </ModalPortal>
               )}

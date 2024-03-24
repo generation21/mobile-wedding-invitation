@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["storage.googleapis.com"],
+    domains: [
+      "storage.googleapis.com",
+      "storage.googleapis.com/wedding-invitation-a4e03.appspot.com",
+    ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
