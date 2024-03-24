@@ -3,7 +3,7 @@ export const GOOGLEFRONTCLOUND =
   "https://storage.googleapis.com/wedding-invitation-a4e03.appspot.com";
 
 export const CONFIG = {
-  myurl: "http://localhost:3000",
+  myurl: "https://sb-s2-sy--wedding-invitation.vercel.app/",
   user: {
     name: "sb ♥ sy",
     image: "",

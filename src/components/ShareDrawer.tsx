@@ -43,11 +43,8 @@ export default function ShareDrawer({ icon, clickedIcon }: Props) {
   }, []);
 
   const handleKakaoClick = () => {
-    console.log(window.Kakao);
-
     if (window.Kakao) {
       const kakao = window.Kakao;
-      console.log(kakao);
 
       kakao.Share.sendDefault({
         objectType: "feed",
@@ -56,8 +53,8 @@ export default function ShareDrawer({ icon, clickedIcon }: Props) {
           description: CONFIG.metadata.description,
           imageUrl: `${GOOGLEFRONTCLOUND}/${CONFIG.metadata.image}`,
           link: {
-            mobileWebUrl: "https://www.google.com",
-            webUrl: "https://www.google.com",
+            mobileWebUrl: CONFIG.myurl,
+            webUrl: CONFIG.myurl,
           },
         },
       });
@@ -75,7 +72,7 @@ export default function ShareDrawer({ icon, clickedIcon }: Props) {
       },
     });
   const handleCopyClick = () => {
-    navigator.clipboard.writeText("https://www.google.com").then(() => {
+    navigator.clipboard.writeText(CONFIG.myurl).then(() => {
       notify();
     });
   };
