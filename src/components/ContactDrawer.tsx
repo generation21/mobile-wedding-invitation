@@ -35,7 +35,7 @@ export default function ContactDrawer({ clickedIcon, icon }: Props) {
           <ul className="flex flex-col gap-2 m-2 " key={index}>
             <li>
               <a
-                href={`tel:+${contact.tel}`}
+                href={`tel:${contact.tel}`}
                 className="flex items-center gap-3 flex-row shadow-sm border border-gray-200 p-2 rounded-lg"
               >
                 <PhoneIcon />
