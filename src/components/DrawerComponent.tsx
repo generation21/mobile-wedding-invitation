@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   title: string;
@@ -17,6 +17,20 @@ const DrawerComponent = ({
   children,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    const handleBackButton = () => {
+      if (isOpen) {
+        setIsOpen(false);
+        return;
+      }
+    };
+
+    window.addEventListener("popstate", handleBackButton);
+
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, [isOpen]);
 
   return (
     <div>
