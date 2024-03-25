@@ -1,7 +1,8 @@
 import { GOOGLEFRONTCLOUND } from "@/libs/configs";
 import Image from "next/image";
+
 import { Carousel } from "react-responsive-carousel";
-import MapDrawer from "../MapDrawer";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 type Props = {
   images: string[];
@@ -35,7 +36,8 @@ export default function CarouselContainer({
       showIndicators={showIndicators}
       useKeyboardArrows // 키보드 화살표로 제어 가능 여부
       dynamicHeight // 동적 높이 조정 여부
-      // 추가적인 props 및 설정 가능
+      preventMovementUntilSwipeScrollTolerance={true}
+      swipeScrollTolerance={50}
     >
       {images.map((image, index) => (
         <div key={index} className={divStyle}>
