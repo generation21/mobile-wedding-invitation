@@ -24,8 +24,9 @@ export const metadata: Metadata = {
   },
 };
 
-// TODO: 계좌 번호입력학
-// TODO: metadata 사진 고르기
+// TODO: 전화 고치기 ?
+// TODO: 뒤로 가기 ?
+// TODO: 확대하기 고치기 ?
 // TODO: 구글 api 연결
 export default function RootLayout({
   children,

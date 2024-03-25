@@ -65,7 +65,7 @@ export default function FooterNav() {
     <nav className="sticky bottom-0 w-full bg-white z-20">
       <ul className="flex justify-between mx-4 py-2 items-center">
         {navDict.map((nav) => (
-          <li>
+          <li key={nav.id}>
             <button
               className={`${
                 activeSection === nav.id ? "text-sky-500" : "text-gray-700"
