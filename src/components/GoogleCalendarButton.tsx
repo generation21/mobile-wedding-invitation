@@ -11,7 +11,8 @@ const GoogleCalendarButton = ({ children }: Props) => {
     );
     const startTime = "20240601T060000Z"; // 예시: 2023년 4월 30일 오후 12시
     const endTime = "20240601T073000Z"; // 예시: 2023년 4월 30일 오후 2시
-    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${description}&location=${location}&sf=true&output=xml`;
+    // const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${description}&location=${location}&sf=true&output=xml`;
+    const url = `https://calendar.google.com/calendar/r/eventedit?text=${title}&dates=${startTime}/${endTime}&details=${description}&location=${location}&trp=false`;
 
     window.open(url, "_blank");
   };
