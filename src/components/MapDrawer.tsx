@@ -58,35 +58,39 @@ export default function MapDrawer({ children }: Props) {
     });
   };
   return (
-    <DrawerComponent
-      title={CONFIG.location.title}
-      description={CONFIG.location.description}
-      icon={children}
-      clickedIcon={children}
-    >
-      <ul className="grid grid-rows-2 gap-2 m-2 sm:grid-rows-1 grid-flow-col">
-        {mapDictionary.map((map) => {
-          return map.title === "주소 복사" ? (
-            <li
-              key={map.title} // key를 여기로 이동
-              className="flex items-center gap-3 flex-col px-4"
-              onClick={handleCopyClick}
-              role="button" // 접근성 개선
-              onKeyPress={handleCopyClick} // 키보드 이벤트 처리기 추가
-            >
-              {map.icon}
-              <p className="text-xs sm:text-sm text-gray-700">{map.title}</p>
-            </li>
-          ) : (
-            <Link href={map.url} target="_blank" key={map.title}>
-              <li className="flex items-center gap-3 flex-col px-4">
+    <React.Suspense fallback={null}>
+      <DrawerComponent
+        title={CONFIG.location.title}
+        description={CONFIG.location.description}
+        icon={children}
+        clickedIcon={children}
+      >
+        <ul className="grid grid-rows-2 gap-2 m-2 sm:grid-rows-1 grid-flow-col">
+          {mapDictionary.map((map) => {
+            return map.title === "주소 복사" ? (
+              <li
+                key={map.title} // key를 여기로 이동
+                className="flex items-center gap-3 flex-col px-4"
+                onClick={handleCopyClick}
+                role="button" // 접근성 개선
+                onKeyPress={handleCopyClick} // 키보드 이벤트 처리기 추가
+              >
                 {map.icon}
                 <p className="text-xs sm:text-sm text-gray-700">{map.title}</p>
               </li>
-            </Link>
-          );
-        })}
-      </ul>
-    </DrawerComponent>
+            ) : (
+              <Link href={map.url} target="_blank" key={map.title}>
+                <li className="flex items-center gap-3 flex-col px-4">
+                  {map.icon}
+                  <p className="text-xs sm:text-sm text-gray-700">
+                    {map.title}
+                  </p>
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+      </DrawerComponent>
+    </React.Suspense>
   );
 }

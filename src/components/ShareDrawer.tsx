@@ -3,7 +3,7 @@
 import { CONFIG, GOOGLEFRONTCLOUND } from "@/libs/configs";
 import DrawerComponent from "./DrawerComponent";
 import ShareIcon from "./ui/icons/ShareIcon";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import toast, { Toaster } from "react-hot-toast";
 
@@ -76,31 +76,33 @@ export default function ShareDrawer({ icon, clickedIcon }: Props) {
     });
   };
   return (
-    <DrawerComponent
-      title={CONFIG.contact.title}
-      description={CONFIG.contact.description}
-      icon={icon}
-      clickedIcon={clickedIcon}
-    >
-      <div className="flex justify-center gap-10 items-center">
-        <button
-          onClick={handleKakaoClick}
-          className="flex flex-col items-center gap-2 m-2"
-        >
-          {snsDictionary.kakao.icon}
+    <Suspense>
+      <DrawerComponent
+        title={CONFIG.contact.title}
+        description={CONFIG.contact.description}
+        icon={icon}
+        clickedIcon={clickedIcon}
+      >
+        <div className="flex justify-center gap-10 items-center">
+          <button
+            onClick={handleKakaoClick}
+            className="flex flex-col items-center gap-2 m-2"
+          >
+            {snsDictionary.kakao.icon}
 
-          <p className="text-xs text-gray-500">{snsDictionary.kakao.title}</p>
-        </button>
-        <button
-          onClick={handleCopyClick}
-          className="flex flex-col items-center gap-2 m-2"
-        >
-          {snsDictionary.link.icon}
+            <p className="text-xs text-gray-500">{snsDictionary.kakao.title}</p>
+          </button>
+          <button
+            onClick={handleCopyClick}
+            className="flex flex-col items-center gap-2 m-2"
+          >
+            {snsDictionary.link.icon}
 
-          <p className="text-xs text-gray-500">{snsDictionary.link.title}</p>
-        </button>
-        <Toaster />
-      </div>
-    </DrawerComponent>
+            <p className="text-xs text-gray-500">{snsDictionary.link.title}</p>
+          </button>
+          <Toaster />
+        </div>
+      </DrawerComponent>
+    </Suspense>
   );
 }

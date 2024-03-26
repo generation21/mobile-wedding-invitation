@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
 type Props = {
   title: string;
@@ -36,7 +36,7 @@ const DrawerComponent = ({
   };
 
   return (
-    <div>
+    <>
       <button
         className="w-full text-center  text-black font-bold  rounded transition duration-300 ease-in-out"
         onClick={openDrawer}
@@ -63,7 +63,7 @@ const DrawerComponent = ({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

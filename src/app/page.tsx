@@ -1,12 +1,14 @@
 import PostList from "@/components/PostList";
 import StoryBoard from "@/components/StoryBoard";
-import Image from "next/image";
-import { AiOutlineHome } from "react-icons/ai";
+
+import { Suspense } from "react";
 
 export default function HomePage() {
   return (
     <section className="w-full flex flex-col">
-      <StoryBoard />
+      <Suspense>
+        <StoryBoard />
+      </Suspense>
       <PostList />
     </section>
   );

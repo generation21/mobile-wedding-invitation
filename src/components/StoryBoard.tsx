@@ -1,7 +1,7 @@
 "use client";
 
 import { StoryBoard } from "@/model/storyboard";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { PropagateLoader } from "react-spinners";
 import useSWR from "swr";
 import Avatar from "./Avatar";
@@ -40,37 +40,39 @@ export default function StoryBoard() {
   };
 
   return (
-    <section className="w-full flex justify-center items-center p-4 shadow-sm shadow-neutral-300 mb-4 min-h-[90px] overflow-x-auto">
-      {loading || !data ? (
-        <PropagateLoader size={15} color="red" />
-      ) : (
-        <ul className="flex w-full gap-2">
-          {data.map((item) => (
-            <li
-              key={item.title}
-              className="flex flex-col items-center w-20"
-              onClick={() => openModalAction(item.title)}
-            >
-              <Avatar image={item.thumnail} highlight={true} />
-              <p className="text-sm text-ellipsis overflow-hidden w-full text-center">
-                {item.title}
-              </p>
+    <>
+      <section className="w-full flex justify-center items-center p-4 shadow-sm shadow-neutral-300 mb-4 min-h-[90px] overflow-x-auto">
+        {loading || !data ? (
+          <PropagateLoader size={15} color="red" />
+        ) : (
+          <ul className="flex w-full gap-2">
+            {data.map((item) => (
+              <li
+                key={item.title}
+                className="flex flex-col items-center w-20"
+                onClick={() => openModalAction(item.title)}
+              >
+                <Avatar image={item.thumnail} highlight={true} />
+                <p className="text-sm text-ellipsis overflow-hidden w-full text-center">
+                  {item.title}
+                </p>
 
-              {openModal === item.title && (
-                <ModalPortal>
-                  <StoryBoardModal onClose={closeModal}>
-                    <StoryBoardDetail
-                      key={item.title}
-                      title={item.title}
-                      images={item.images}
-                    />
-                  </StoryBoardModal>
-                </ModalPortal>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-    </section>
+                {openModal === item.title && (
+                  <ModalPortal>
+                    <StoryBoardModal onClose={closeModal}>
+                      <StoryBoardDetail
+                        key={item.title}
+                        title={item.title}
+                        images={item.images}
+                      />
+                    </StoryBoardModal>
+                  </ModalPortal>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </>
   );
 }

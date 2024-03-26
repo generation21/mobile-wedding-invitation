@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sb-s2-sy--wedding-invitation.vercel.app"),
   title: CONFIG.metadata.title,
   description: CONFIG.metadata.description,
   openGraph: {

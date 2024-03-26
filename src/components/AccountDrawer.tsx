@@ -61,43 +61,45 @@ export default function AccountDrawer({ children }: Props) {
     notify(title);
   };
   return (
-    <DrawerComponent
-      title={CONFIG.account.title}
-      description={CONFIG.account.description}
-      icon={children}
-      clickedIcon={children}
-    >
-      <ul className="flex sm:flex-row flex-col gap-2 m-2 w-full">
-        {groomDictionary.map((account, index) => (
-          <li className="sm:w-1/3" key={index}>
-            <button
-              onClick={() => handleCopyClick(account.account, account.title)}
-              className="flex w-full items-center gap-5 flex-row shadow-sm border border-gray-200 p-2 rounded-lg"
-            >
-              <div className="rounded-lg bg-gray-100 ">{account.icon}</div>
-              <p className="text-sm sm:text-base text-gray-500">
-                {account.title}
-              </p>
-            </button>
-          </li>
-        ))}
-      </ul>
-      <div className="border-b border-gray-300 my-1 w-full" />
-      <ul className="flex sm:flex-row flex-col gap-2 m-2 w-full">
-        {brideDictionary.map((account, index) => (
-          <li className="sm:w-1/3" key={index}>
-            <button
-              onClick={() => handleCopyClick(account.account, account.title)}
-              className="flex items-center gap-5 w-full flex-row shadow-sm border border-gray-200 p-2 rounded-lg"
-            >
-              <div className="rounded-lg bg-gray-100 ">{account.icon}</div>
-              <p className="text-sm sm:text-base text-gray-500">
-                {account.title}
-              </p>
-            </button>
-          </li>
-        ))}
-      </ul>
-    </DrawerComponent>
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <DrawerComponent
+        title={CONFIG.account.title}
+        description={CONFIG.account.description}
+        icon={children}
+        clickedIcon={children}
+      >
+        <ul className="flex sm:flex-row flex-col gap-2 m-2 w-full">
+          {groomDictionary.map((account, index) => (
+            <li className="sm:w-1/3" key={index}>
+              <button
+                onClick={() => handleCopyClick(account.account, account.title)}
+                className="flex w-full items-center gap-5 flex-row shadow-sm border border-gray-200 p-2 rounded-lg"
+              >
+                <div className="rounded-lg bg-gray-100 ">{account.icon}</div>
+                <p className="text-sm sm:text-base text-gray-500">
+                  {account.title}
+                </p>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <div className="border-b border-gray-300 my-1 w-full" />
+        <ul className="flex sm:flex-row flex-col gap-2 m-2 w-full">
+          {brideDictionary.map((account, index) => (
+            <li className="sm:w-1/3" key={index}>
+              <button
+                onClick={() => handleCopyClick(account.account, account.title)}
+                className="flex items-center gap-5 w-full flex-row shadow-sm border border-gray-200 p-2 rounded-lg"
+              >
+                <div className="rounded-lg bg-gray-100 ">{account.icon}</div>
+                <p className="text-sm sm:text-base text-gray-500">
+                  {account.title}
+                </p>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </DrawerComponent>
+    </React.Suspense>
   );
 }
