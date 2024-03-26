@@ -1,4 +1,5 @@
 "use client";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 type Props = {
@@ -17,26 +18,28 @@ const DrawerComponent = ({
   children,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useRouter();
+  const searchParams = useSearchParams();
   useEffect(() => {
-    const handleBackButton = () => {
-      if (isOpen) {
-        setIsOpen(false);
-        return;
-      }
-    };
+    const isModalOpen = searchParams.get("drawer") === title;
+    setIsOpen(isModalOpen);
+  }, [searchParams]);
 
-    window.addEventListener("popstate", handleBackButton);
+  const closeDrawer = () => {
+    navigate.push(`/`, { scroll: false });
+    setIsOpen(false);
+  };
 
-    return () => {
-      window.removeEventListener("popstate", handleBackButton);
-    };
-  }, [isOpen]);
+  const openDrawer = () => {
+    navigate.push(`?drawer=${title}`, { scroll: false });
+    setIsOpen(true);
+  };
 
   return (
     <div>
       <button
         className="w-full text-center  text-black font-bold  rounded transition duration-300 ease-in-out"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={openDrawer}
       >
         {isOpen ? clickedIcon : icon}
       </button>
@@ -44,7 +47,7 @@ const DrawerComponent = ({
         className={`fixed inset-0 flex items-end bg-black bg-opacity-50 z-40 transition-opacity duration-500 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
-        onClick={() => setIsOpen(false)}
+        onClick={closeDrawer}
       >
         <div
           className="w-full transform transition-transform duration-500 ease-in-out"
