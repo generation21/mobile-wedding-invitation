@@ -22,9 +22,9 @@ const DrawerComponent = ({
   useEffect(() => {
     // URL 변경에 따라 Drawer 상태를 업데이트하는 부수 효과
     if (isOpen) {
-      navigate.replace(`?drawer=${title}`, { scroll: false });
+      navigate.push(`?drawer=${title}`, { scroll: false });
     } else {
-      navigate.replace("/", { scroll: false });
+      navigate.push("/", { scroll: false });
     }
 
     // 브라우저 뒤로 가기 버튼 감지
