@@ -1,10 +1,10 @@
-"use client";
 import Link from "next/link";
 import { IoShareSocialOutline } from "react-icons/io5";
 import MessageFillIcon from "./ui/icons/MessageFillIcon";
 import MessageIcon from "./ui/icons/MessageIcon";
 import ContactDrawer from "./ContactDrawer";
 import ShareDrawer from "./ShareDrawer";
+import { Suspense } from "react";
 
 export default function Navbar() {
   const menues = [
@@ -35,9 +35,11 @@ export default function Navbar() {
       </Link>
       <nav>
         <ul className="flex gap-4 items-center p-4 justify-center">
-          {menues.map((menu) => (
-            <li key={menu.key}>{menu.children}</li>
-          ))}
+          <Suspense fallback={<div>Loading...</div>}>
+            {menues.map((menu) => (
+              <li key={menu.key}>{menu.children}</li>
+            ))}
+          </Suspense>
         </ul>
       </nav>
     </div>

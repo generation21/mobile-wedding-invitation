@@ -76,33 +76,31 @@ export default function ShareDrawer({ icon, clickedIcon }: Props) {
     });
   };
   return (
-    <Suspense>
-      <DrawerComponent
-        title={CONFIG.contact.title}
-        description={CONFIG.contact.description}
-        icon={icon}
-        clickedIcon={clickedIcon}
-      >
-        <div className="flex justify-center gap-10 items-center">
-          <button
-            onClick={handleKakaoClick}
-            className="flex flex-col items-center gap-2 m-2"
-          >
-            {snsDictionary.kakao.icon}
+    <DrawerComponent
+      title={CONFIG.share.title}
+      description={CONFIG.share.description}
+      icon={icon}
+      clickedIcon={clickedIcon}
+    >
+      <div className="flex justify-center gap-10 items-center">
+        <button
+          onClick={handleKakaoClick}
+          className="flex flex-col items-center gap-2 m-2"
+        >
+          {snsDictionary.kakao.icon}
 
-            <p className="text-xs text-gray-500">{snsDictionary.kakao.title}</p>
-          </button>
-          <button
-            onClick={handleCopyClick}
-            className="flex flex-col items-center gap-2 m-2"
-          >
-            {snsDictionary.link.icon}
+          <p className="text-xs text-gray-500">{snsDictionary.kakao.title}</p>
+        </button>
+        <button
+          onClick={handleCopyClick}
+          className="flex flex-col items-center gap-2 m-2"
+        >
+          {snsDictionary.link.icon}
 
-            <p className="text-xs text-gray-500">{snsDictionary.link.title}</p>
-          </button>
-          <Toaster />
-        </div>
-      </DrawerComponent>
-    </Suspense>
+          <p className="text-xs text-gray-500">{snsDictionary.link.title}</p>
+        </button>
+        <Toaster />
+      </div>
+    </DrawerComponent>
   );
 }

@@ -21,25 +21,22 @@ const DrawerComponent = ({
   const navigate = useRouter();
   const searchParams = useSearchParams();
   useEffect(() => {
-    const isModalOpen = searchParams.get("drawer") === title;
-    setIsOpen(isModalOpen);
-  }, [searchParams]);
+    if (isOpen) {
+      navigate.replace(`?drawer=${title}`, { scroll: false });
+    } else {
+      navigate.replace("/", { scroll: false });
+    }
+  }, [isOpen, navigate, title]);
 
-  const closeDrawer = () => {
-    navigate.push(`/`, { scroll: false });
-    setIsOpen(false);
+  const toggleDrawer = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsOpen(!isOpen);
   };
-
-  const openDrawer = () => {
-    navigate.push(`?drawer=${title}`, { scroll: false });
-    setIsOpen(true);
-  };
-
   return (
     <>
       <button
         className="w-full text-center  text-black font-bold  rounded transition duration-300 ease-in-out"
-        onClick={openDrawer}
+        onClick={toggleDrawer}
       >
         {isOpen ? clickedIcon : icon}
       </button>
@@ -47,7 +44,7 @@ const DrawerComponent = ({
         className={`fixed inset-0 flex items-end bg-black bg-opacity-50 z-40 transition-opacity duration-500 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
-        onClick={closeDrawer}
+        onClick={toggleDrawer}
       >
         <div
           className="w-full transform transition-transform duration-500 ease-in-out"

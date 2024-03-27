@@ -17,6 +17,11 @@ export const CONFIG = {
     brideTel: "01064255674",
   },
 
+  share: {
+    title: "승범 & 소연의 결혼 소식을 공유해 주세요",
+    description: "승범 & 소연의 자세한 결혼 소식을 공유해주세요",
+  },
+
   metadata: {
     title: "승범 소연이의 모바일 청접장",
     description: "2024.06.01 오후 3시",
