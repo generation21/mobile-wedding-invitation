@@ -19,13 +19,27 @@ const DrawerComponent = ({
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useRouter();
-  const searchParams = useSearchParams();
   useEffect(() => {
+    // URL 변경에 따라 Drawer 상태를 업데이트하는 부수 효과
     if (isOpen) {
-      navigate.push(`?drawer=${title}`, { scroll: false });
+      navigate.replace(`?drawer=${title}`, { scroll: false });
     } else {
-      navigate.push("/", { scroll: false });
+      navigate.replace("/", { scroll: false });
     }
+
+    // 브라우저 뒤로 가기 버튼 감지
+    const handlePopState = () => {
+      const isDrawerOpen =
+        new URL(window.location.href).searchParams.get("drawer") === title;
+      setIsOpen(isDrawerOpen);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, [isOpen, navigate, title]);
 
   const toggleDrawer = (event: React.MouseEvent) => {
