@@ -22,9 +22,9 @@ const DrawerComponent = ({
   const searchParams = useSearchParams();
   useEffect(() => {
     if (isOpen) {
-      navigate.replace(`?drawer=${title}`, { scroll: false });
+      navigate.push(`?drawer=${title}`, { scroll: false });
     } else {
-      navigate.replace("/", { scroll: false });
+      navigate.push("/", { scroll: false });
     }
   }, [isOpen, navigate, title]);
 
