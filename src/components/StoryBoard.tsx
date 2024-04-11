@@ -11,10 +11,6 @@ import ModalPortal from "./ui/ModalPortal";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function StoryBoard() {
-  //  1. 백엔드에서 스토리 보드의 정보들을 Sanity에서 가지고 옴
-  //  2. 여기에서 클라이언트 컴포넌트에서 스토리보드 정보를 UI에 보여줌
-  //  (title, thumnail, images)
-
   const {
     data,
     isLoading: loading,
