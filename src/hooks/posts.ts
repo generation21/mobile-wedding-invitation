@@ -46,7 +46,7 @@ export default function usePosts() {
     isLoading,
     error,
     mutate,
-  } = useSWR<FullPost[]>("/api/posts");
+  } = useSWR<FullPost[]>("/api/posts", { refreshInterval: 5000 });
 
   const postComment = (post: FullPost, comment: Comment) => {
     const newPost = {

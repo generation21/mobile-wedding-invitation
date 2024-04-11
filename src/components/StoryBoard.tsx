@@ -19,7 +19,7 @@ export default function StoryBoard() {
     data,
     isLoading: loading,
     error,
-  } = useSWR<StoryBoard[]>("api/storyboard");
+  } = useSWR<StoryBoard[]>("api/storyboard", { refreshInterval: 5000 });
 
   const [openModal, setOpenModal] = useState<string | null>(null);
   const navigate = useRouter();
