@@ -40,7 +40,9 @@ export default function ContactDrawer({ clickedIcon, icon }: Props) {
               >
                 <PhoneIcon />
 
-                <p className="text-sm text-gray-500">{contact.telTitle}</p>
+                <p className="text-xs text-gray-500 truncate w-18">
+                  {contact.telTitle}
+                </p>
               </a>
             </li>
             <li>
@@ -49,7 +51,9 @@ export default function ContactDrawer({ clickedIcon, icon }: Props) {
                 className="flex items-center gap-3 flex-row shadow-sm border border-gray-200 p-2 rounded-lg"
               >
                 <EnvolopeIcon />
-                <p className="text-sm text-gray-500">{contact.messageTitle}</p>
+                <p className="text-xs text-gray-500 truncate  w-18">
+                  {contact.messageTitle}
+                </p>
               </a>
             </li>
           </ul>
