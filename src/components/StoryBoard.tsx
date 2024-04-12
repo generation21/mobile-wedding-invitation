@@ -41,7 +41,7 @@ export default function StoryBoard() {
         {loading || !data ? (
           <PropagateLoader size={15} color="red" />
         ) : (
-          <ul className="flex w-full gap-2">
+          <ul className="flex w-full gap-4">
             {data.map((item) => (
               <li
                 key={item.title}
@@ -49,7 +49,7 @@ export default function StoryBoard() {
                 onClick={() => openModalAction(item.title)}
               >
                 <Avatar image={item.thumnail} highlight={true} />
-                <p className="text-sm text-ellipsis overflow-hidden w-full text-center">
+                <p className="text-sm text-ellipsis w-18 text-center truncate">
                   {item.title}
                 </p>
 
