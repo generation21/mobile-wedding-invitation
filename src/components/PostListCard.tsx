@@ -55,7 +55,7 @@ export default function PostListCard({ post }: Props) {
       {id === "calendar" && (
         <GoogleCalendarButton>
           <div className="h-9 w-full bg-green-500 flex items-center justify-between pl-4 pr-3 border-t-2">
-            <p className="text-white text-sm">구글 갤린더에 저장하기!</p>
+            <p className="text-white text-sm">구글 캘린더에 저장하기!</p>
             <MdKeyboardArrowRight className="text-white w-6 h-6" />
           </div>
         </GoogleCalendarButton>
