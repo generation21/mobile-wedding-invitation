@@ -1,4 +1,7 @@
 import { Comment, FullPost } from "@/model/posts";
+import { fireStore } from "@/service/firesotre";
+import { collection, onSnapshot } from "firebase/firestore";
+import { useEffect } from "react";
 import useSWR from "swr";
 
 async function addComment(id: string, comment: Comment) {
@@ -46,8 +49,34 @@ export default function usePosts() {
     isLoading,
     error,
     mutate,
-  } = useSWR<FullPost[]>("/api/posts", { refreshInterval: 5000 });
+  } = useSWR<FullPost[]>("/api/posts");
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(fireStore, "posts"),
+      (snapshot) => {
+        const updatedPosts = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as FullPost[];
+        updatedPosts.sort((a, b) => {
+          const ids = ["introduction", "location", "calendar", "account"];
+          const aIndex = ids.indexOf(a.id);
+          const bIndex = ids.indexOf(b.id);
 
+          return aIndex - bIndex;
+        });
+        // SWR 캐시를 직접 업데이트합니다.
+        mutate(updatedPosts, {
+          optimisticData: updatedPosts,
+          populateCache: false,
+          revalidate: false,
+          rollbackOnError: true,
+        });
+      }
+    );
+
+    return () => unsubscribe();
+  }, []);
   const postComment = (post: FullPost, comment: Comment) => {
     const newPost = {
       ...post,
@@ -113,6 +142,7 @@ export default function usePosts() {
     posts,
     isLoading,
     error,
+    mutate,
     postComment,
     editPostComment,
     deletePostComment,

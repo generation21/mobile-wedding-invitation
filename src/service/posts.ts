@@ -1,4 +1,4 @@
-import { Comment } from "@/model/posts";
+import { Comment, FullPost } from "@/model/posts";
 import { fireStore } from "@/service/firesotre";
 import {
   getDocs,
@@ -6,6 +6,7 @@ import {
   arrayRemove,
   getDoc,
   FirestoreError,
+  onSnapshot,
 } from "firebase/firestore";
 
 export async function getPosts() {

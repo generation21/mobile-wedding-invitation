@@ -1,6 +1,6 @@
 "use client";
 
-import { StoryBoard } from "@/model/storyboard";
+import { storybaordModel } from "@/model/storyboard";
 import { Suspense, useEffect, useState } from "react";
 import { PropagateLoader } from "react-spinners";
 import useSWR from "swr";
@@ -10,12 +10,16 @@ import StoryBoardModal from "./StoryBoardModal";
 import ModalPortal from "./ui/ModalPortal";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function StoryBoard() {
-  const {
-    data,
-    isLoading: loading,
-    error,
-  } = useSWR<StoryBoard[]>("api/storyboard", { refreshInterval: 5000 });
+type Props = {
+  storyboard: storybaordModel[];
+};
+
+export default function StoryBoard({ storyboard }: Props) {
+  // const {
+  //   data,
+  //   isLoading: loading,
+  //   error,
+  // } = useSWR<StoryBoard[]>("api/storyboard");
 
   const [openModal, setOpenModal] = useState<string | null>(null);
   const navigate = useRouter();
@@ -38,11 +42,11 @@ export default function StoryBoard() {
   return (
     <>
       <section className="w-full flex justify-center items-center p-4 shadow-sm shadow-neutral-300 mb-4 min-h-[90px] overflow-x-auto">
-        {loading || !data ? (
+        {!storyboard ? (
           <PropagateLoader size={15} color="red" />
         ) : (
           <ul className="flex w-full gap-4">
-            {data.map((item) => (
+            {storyboard.map((item) => (
               <li
                 key={item.title}
                 className="flex flex-col items-center w-20"

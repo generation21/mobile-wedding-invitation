@@ -1,3 +1,4 @@
+"use client";
 import { Comment } from "@/model/posts";
 import { useState } from "react";
 import CommentDetail from "./CommentDetail";
