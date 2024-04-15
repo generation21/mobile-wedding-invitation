@@ -16,7 +16,7 @@ type Props = {
 };
 
 export default function PostListCard({ post }: Props) {
-  const { id, images, comments, text } = post;
+  const { id, images, comments, text, hashtag } = post;
   const { postComment, editPostComment, deletePostComment } = usePosts();
   const handlePostComment = (comment: Comment) => {
     postComment(post, comment);
@@ -72,8 +72,16 @@ export default function PostListCard({ post }: Props) {
       <HeartButton id={post.id} />
       <div className="px-4 py-1">
         <div>
-          <span className="font-bold mr-1">{CONFIG.user.name}</span>
-          <p className="text-xs text-neutral-600 my-4 uppercase">{text} </p>
+          <span className="text-sm font-bold mr-1">{CONFIG.user.name}</span>
+          <p className="text-sm text-neutral-700 my-2">{text}</p>
+          <div className="flex flex-wrap">
+            {hashtag.map((tag, index) => (
+              <p key={index} className="text-xs text-blue-500 mr-2">
+                #{tag}
+              </p>
+            ))}
+          </div>
+
           <CommentList
             comments={comments}
             handleEditComment={handleEditComment}
