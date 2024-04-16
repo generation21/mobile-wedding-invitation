@@ -1,7 +1,8 @@
 "use client";
+
 import { Comment } from "@/model/posts";
-import { useState } from "react";
 import CommentDetail from "./CommentDetail";
+import { useState } from "react";
 
 type Props = {
   comments: Comment[];
@@ -15,29 +16,41 @@ export default function CommentList({ comments, handleEditComment }: Props) {
   };
   return (
     <article className="border-t border-gray-300 py-3">
-      {!open && comments.length > 0 && (
-        <button
-          className="font-bold  text-sky-500"
-          onClick={handleOnClick}
-        >{`View all ${comments.length} comments`}</button>
-      )}
-      {open && (
-        <div className="space-y-4 mt-4">
-          {comments.map((item, index) => (
-            <CommentDetail
-              key={index}
-              item={item}
-              handleEditComment={handleEditComment}
-            />
-          ))}
-          <button
-            className="mt-4 text-sm text-gray-500"
-            onClick={handleOnClick}
-          >
-            댓글 숨기기
-          </button>
-        </div>
-      )}
+      <div className="space-y-4 mt-4">
+        {comments.map((item, index) => (
+          <CommentDetail
+            key={index}
+            item={item}
+            handleEditComment={handleEditComment}
+          />
+        ))}
+      </div>
     </article>
   );
 }
+
+{
+  /* //  {!open && comments.length > 0 && ( */
+}
+//         <button
+//           className="font-bold  text-sky-500"
+//           onClick={handleOnClick}
+//         >{`View all ${comments.length} comments`}</button>
+//       )}
+//       {open && (
+//         <div className="space-y-4 mt-4">
+//           {comments.map((item, index) => (
+//             <CommentDetail
+//               key={index}
+//               item={item}
+//               handleEditComment={handleEditComment}
+//             />
+//           ))}
+//           <button
+//             className="mt-4 text-sm text-gray-500"
+//             onClick={handleOnClick}
+//           >
+//             댓글 숨기기
+//           </button>
+//         </div>
+//       )}
