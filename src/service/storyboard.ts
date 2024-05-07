@@ -8,4 +8,3 @@ export async function getStoryBoard() {
 
   return getDocs(storyBoardCollectionRef);
 }
-// _type == "storyboard"
